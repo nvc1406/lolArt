@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DataCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Calender">
           <Key>
             <PropertyRef Name="CalenderId" />
@@ -35,6 +35,14 @@
           <Property Name="ChampIcon" Type="nvarchar" MaxLength="500" />
           <Property Name="ImgFullScreen" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="LogException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Exception" Type="ntext" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -91,8 +99,9 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="Role" Type="int" Nullable="false" />
           <Property Name="BandedTime" Type="datetime" />
-          <Property Name="BandReason" Type="nvarchar" MaxLength="1" />
+          <Property Name="BandReason" Type="nvarchar" MaxLength="500" />
           <Property Name="BandedBy" Type="int" />
+          <Property Name="LastedLogin" Type="datetime" />
         </EntityType>
         <Association Name="FK__Category__Role__239E4DCF">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -158,6 +167,7 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <EntitySet Name="Calender" EntityType="Self.Calender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Champion" EntityType="Self.Champion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogException" EntityType="Self.LogException" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
@@ -189,8 +199,7 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -276,10 +285,11 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="BandedTime" Type="DateTime" Precision="3" />
-          <Property Name="BandReason" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BandReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="BandedBy" Type="Int32" />
           <NavigationProperty Name="Posts" Relationship="Self.FK__Post__PostBy__24927208" FromRole="User" ToRole="Post" />
           <NavigationProperty Name="Role1" Relationship="Self.FK__User__Role__276EDEB3" FromRole="User" ToRole="Roles" />
+          <Property Name="LastedLogin" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__Category__Role__239E4DCF">
           <End Role="Roles" Type="Self.Role" Multiplicity="1" />
@@ -345,7 +355,16 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
             <End Role="Post" EntitySet="Posts" />
             <End Role="Tag" EntitySet="Tags" />
           </AssociationSet>
+          <EntitySet Name="LogExceptions" EntityType="DataCenterModel.LogException" />
         </EntityContainer>
+        <EntityType Name="LogException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Exception" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -424,6 +443,7 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DataCenterModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="LastedLogin" ColumnName="LastedLogin" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="NickName" ColumnName="NickName" />
@@ -446,6 +466,15 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
               <ScalarProperty Name="TagId" ColumnName="TagId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="LogExceptions">
+            <EntityTypeMapping TypeName="DataCenterModel.LogException">
+              <MappingFragment StoreEntitySet="LogException">
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

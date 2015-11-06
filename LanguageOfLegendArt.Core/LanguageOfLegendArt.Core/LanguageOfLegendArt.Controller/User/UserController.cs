@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.LogException;
 using LanguageOfLegendArt.Core.LanguageOfLegentArt.Constkey;
 using LanguageOfLegendArt.Core.UnitOfWork;
 namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
@@ -11,10 +12,12 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserResponsitory _userResponsitory;
+        private readonly LogExceptionController _logException;
         public UserController()
         {
             _unitOfWork = new UnitOfWork.UnitOfWork();
             _userResponsitory = new UserResponsitory(_unitOfWork);
+            _logException = new LogExceptionController();
         }
         public  List<Model.User> GetAll()
         {
@@ -101,8 +104,9 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logException.InsertException(new Model.LogException{Exception= ex.Message,Time = DateTime.Now});
                 iNotifi = EnumKey.InsertSuccess;
             }
             return iNotifi;
@@ -118,8 +122,9 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
                     iNotifi = EnumKey.UpdateSuccess;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now });
                 iNotifi = EnumKey.UpdateSuccess;
             }
             return iNotifi;

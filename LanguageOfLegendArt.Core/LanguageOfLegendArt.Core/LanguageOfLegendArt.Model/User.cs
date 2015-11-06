@@ -30,6 +30,7 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Model
         public Nullable<System.DateTime> BandedTime { get; set; }
         public string BandReason { get; set; }
         public Nullable<int> BandedBy { get; set; }
+        public Nullable<System.DateTime> LastedLogin { get; set; }
     
         public virtual ICollection<Post> Posts { get; set; }
         public virtual Role Role1 { get; set; }

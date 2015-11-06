@@ -16,6 +16,7 @@
         <AssociationConnector Association="DataCenterModel.FK__Post__PostBy__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="DataCenterModel.FK__User__Role__276EDEB3" ManuallyRouted="false" />
         <AssociationConnector Association="DataCenterModel.PostTagMap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DataCenterModel.LogException" Width="1.5" PointX="7.125" PointY="3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
