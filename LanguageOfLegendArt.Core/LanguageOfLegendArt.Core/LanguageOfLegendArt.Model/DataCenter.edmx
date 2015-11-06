@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calender">
+          <Key>
+            <PropertyRef Name="CalenderId" />
+          </Key>
+          <Property Name="CalenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Match" Type="nvarchar" MaxLength="500" />
+          <Property Name="Score" Type="nvarchar" MaxLength="500" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="CategoryStatus" Type="int" Nullable="false" />
+          <Property Name="NumberPostOfCategory" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Champion">
+          <Key>
+            <PropertyRef Name="ChampionId" />
+          </Key>
+          <Property Name="ChampionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ChampIcon" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImgFullScreen" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="PostStatus" Type="int" />
+          <Property Name="PostBy" Type="int" Nullable="false" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="View" Type="bigint" />
+          <Property Name="UrlSlug" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PostTagMap">
+          <Key>
+            <PropertyRef Name="PostId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="UrlSlug" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Passwords" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserStatus" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="BandedTime" Type="datetime" />
+          <Property Name="BandReason" Type="nvarchar" MaxLength="1" />
+          <Property Name="BandedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK__Category__Role__239E4DCF">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__PostBy__24927208">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="PostBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PostTagMa__PostI__25869641">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostTagMap" Type="Self.PostTagMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="PostId" />
+            </Principal>
+            <Dependent Role="PostTagMap">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PostTagMa__TagId__267ABA7A">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="PostTagMap" Type="Self.PostTagMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="PostTagMap">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__Role__276EDEB3">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataCenterModelStoreContainer">
+          <EntitySet Name="Calender" EntityType="Self.Calender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Champion" EntityType="Self.Champion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTagMap" EntityType="Self.PostTagMap" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PostTagMap].[PostId] AS [PostId], 
+    [PostTagMap].[TagId] AS [TagId]
+    FROM [dbo].[PostTagMap] AS [PostTagMap]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Category__Role__239E4DCF" Association="Self.FK__Category__Role__239E4DCF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__PostBy__24927208" Association="Self.FK__Post__PostBy__24927208">
+            <End Role="User" EntitySet="User" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PostTagMa__PostI__25869641" Association="Self.FK__PostTagMa__PostI__25869641">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostTagMap" EntitySet="PostTagMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PostTagMa__TagId__267ABA7A" Association="Self.FK__PostTagMa__TagId__267ABA7A">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="PostTagMap" EntitySet="PostTagMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__Role__276EDEB3" Association="Self.FK__User__Role__276EDEB3">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calender">
+          <Key>
+            <PropertyRef Name="CalenderId" />
+          </Key>
+          <Property Name="CalenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Match" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="CategoryStatus" Type="Int32" Nullable="false" />
+          <Property Name="NumberPostOfCategory" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK__Category__Role__239E4DCF" FromRole="Category" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Champion">
+          <Key>
+            <PropertyRef Name="ChampionId" />
+          </Key>
+          <Property Name="ChampionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChampIcon" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImgFullScreen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostStatus" Type="Int32" />
+          <Property Name="PostBy" Type="Int32" Nullable="false" />
+          <Property Name="PostTime" Type="DateTime" Precision="3" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="View" Type="Int64" />
+          <Property Name="UrlSlug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Post__PostBy__24927208" FromRole="Post" ToRole="User" />
+          <NavigationProperty Name="Tags" Relationship="Self.PostTagMap" FromRole="Post" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK__Category__Role__239E4DCF" FromRole="Roles" ToRole="Category" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User__Role__276EDEB3" FromRole="Roles" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UrlSlug" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Posts" Relationship="Self.PostTagMap" FromRole="Tag" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passwords" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserStatus" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="BandedTime" Type="DateTime" Precision="3" />
+          <Property Name="BandReason" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BandedBy" Type="Int32" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__PostBy__24927208" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK__User__Role__276EDEB3" FromRole="User" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Category__Role__239E4DCF">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__PostBy__24927208">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="PostBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__Role__276EDEB3">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PostTagMap">
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DataCenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calenders" EntityType="Self.Calender" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Champions" EntityType="Self.Champion" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Category__Role__239E4DCF" Association="Self.FK__Category__Role__239E4DCF">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__PostBy__24927208" Association="Self.FK__Post__PostBy__24927208">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__Role__276EDEB3" Association="Self.FK__User__Role__276EDEB3">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PostTagMap" Association="Self.PostTagMap">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataCenterModelStoreContainer" CdmEntityContainer="DataCenterEntities">
+          <EntitySetMapping Name="Calenders">
+            <EntityTypeMapping TypeName="DataCenterModel.Calender">
+              <MappingFragment StoreEntitySet="Calender">
+                <ScalarProperty Name="CalenderId" ColumnName="CalenderId" />
+                <ScalarProperty Name="Match" ColumnName="Match" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DataCenterModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CategoryStatus" ColumnName="CategoryStatus" />
+                <ScalarProperty Name="NumberPostOfCategory" ColumnName="NumberPostOfCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Champions">
+            <EntityTypeMapping TypeName="DataCenterModel.Champion">
+              <MappingFragment StoreEntitySet="Champion">
+                <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ChampIcon" ColumnName="ChampIcon" />
+                <ScalarProperty Name="ImgFullScreen" ColumnName="ImgFullScreen" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="DataCenterModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostStatus" ColumnName="PostStatus" />
+                <ScalarProperty Name="PostBy" ColumnName="PostBy" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="UrlSlug" ColumnName="UrlSlug" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DataCenterModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="DataCenterModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UrlSlug" ColumnName="UrlSlug" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DataCenterModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="BandedTime" ColumnName="BandedTime" />
+                <ScalarProperty Name="BandReason" ColumnName="BandReason" />
+                <ScalarProperty Name="BandedBy" ColumnName="BandedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PostTagMap" TypeName="DataCenterModel.PostTagMap" StoreEntitySet="PostTagMap">
+            <EndProperty Name="Post">
+              <ScalarProperty Name="PostId" ColumnName="PostId" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="TagId" ColumnName="TagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
