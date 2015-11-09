@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85215994-58E0-4D45-B2A3-F49E4B4085CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LanguageOfLegendArt.Core</RootNamespace>
+    <AssemblyName>LanguageOfLegendArt.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LanguageOfLegendArt.Controller\Category\CategoryController.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\Category\CategoryResponsitory.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\LogException\LogExceptionController.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\LogException\LogExceptionResponsitory.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\User\UserController.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\User\UserResponsitory.cs" />
+    <Compile Include="LanguageOfLegendArt.Model\Calender.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\Category.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\Champion.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\DataCenter.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCenter.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\DataCenter.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\DataCenter.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCenter.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\LogException.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\Post.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\Role.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\Tag.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\User.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageOfLegentArt.Constkey\EnumKey.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\DapperQuery.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DapperQuery.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\BusinessTransaction.cs" />
+    <Compile Include="UnitOfWork\DataCenterInterfaceBase.cs" />
+    <Compile Include="UnitOfWork\IBaseRepository.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DapperQuery.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DapperQuery.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="LanguageOfLegendArt.Model\DataCenter.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataCenter.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="LanguageOfLegendArt.Model\DataCenter.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataCenter.edmx</DependentUpon>
+      <LastGenOutput>DataCenter.Context.cs</LastGenOutput>
+    </None>
+    <None Include="LanguageOfLegendArt.Model\DataCenter.edmx.diagram">
+      <DependentUpon>DataCenter.edmx</DependentUpon>
+    </None>
+    <None Include="LanguageOfLegendArt.Model\DataCenter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataCenter.edmx</DependentUpon>
+      <LastGenOutput>DataCenter.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
