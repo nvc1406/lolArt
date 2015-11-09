@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LanguageOfLegendArt.Controller\Category\CategoryController.cs" />
+    <Compile Include="LanguageOfLegendArt.Controller\Category\CategoryResponsitory.cs" />
     <Compile Include="LanguageOfLegendArt.Controller\LogException\LogExceptionController.cs" />
     <Compile Include="LanguageOfLegendArt.Controller\LogException\LogExceptionResponsitory.cs" />
     <Compile Include="LanguageOfLegendArt.Controller\User\UserController.cs" />
