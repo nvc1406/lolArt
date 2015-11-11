@@ -7,9 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageOfLegendArt.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTest", "AppTest\AppTest.csproj", "{6BE262D8-44A5-4501-873E-1FDC4B0A8124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoLArt.web", "lolArt.web.admin\lolArt.web.admin\LoLArt.web.csproj", "{5EE5CEE4-DA23-4BD9-8BFF-E1BCB1202689}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoLArt.admin", "LoLArt.admin\LoLArt.admin.csproj", "{AF1AF628-4575-4D67-A2DC-1F21B56E353A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoLArt.Admin", "LoLArt.admin\LoLArt.Admin.csproj", "{AF1AF628-4575-4D67-A2DC-1F21B56E353A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{6BE262D8-44A5-4501-873E-1FDC4B0A8124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE262D8-44A5-4501-873E-1FDC4B0A8124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE262D8-44A5-4501-873E-1FDC4B0A8124}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EE5CEE4-DA23-4BD9-8BFF-E1BCB1202689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EE5CEE4-DA23-4BD9-8BFF-E1BCB1202689}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EE5CEE4-DA23-4BD9-8BFF-E1BCB1202689}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EE5CEE4-DA23-4BD9-8BFF-E1BCB1202689}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF1AF628-4575-4D67-A2DC-1F21B56E353A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF1AF628-4575-4D67-A2DC-1F21B56E353A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF1AF628-4575-4D67-A2DC-1F21B56E353A}.Release|Any CPU.ActiveCfg = Release|Any CPU
