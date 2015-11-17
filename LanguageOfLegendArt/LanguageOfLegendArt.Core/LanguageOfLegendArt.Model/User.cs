@@ -17,6 +17,9 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Model
         public User()
         {
             this.Posts = new HashSet<Post>();
+            this.BannedUsers = new HashSet<BannedUser>();
+            this.BannedUsers1 = new HashSet<BannedUser>();
+            this.PageDefaults = new HashSet<PageDefault>();
         }
     
         public int UserId { get; set; }
@@ -31,8 +34,16 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Model
         public string BandReason { get; set; }
         public Nullable<int> BandedBy { get; set; }
         public Nullable<System.DateTime> LastedLogin { get; set; }
+        public string Avatar { get; set; }
+        public string TypeMember { get; set; }
+        public string Cognomen { get; set; }
+        public string PhoneNumber { get; set; }
+        public string FullName { get; set; }
     
         public virtual ICollection<Post> Posts { get; set; }
         public virtual Role Role1 { get; set; }
+        public virtual ICollection<BannedUser> BannedUsers { get; set; }
+        public virtual ICollection<BannedUser> BannedUsers1 { get; set; }
+        public virtual ICollection<PageDefault> PageDefaults { get; set; }
     }
 }

@@ -43,8 +43,14 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
         public  bool DoLogin(string email, string password)
         {
             var passwordEcrypt = Md5Hash(password);
-            var objData = _userResponsitory.GetMany(t => (t.Email.Equals(email)|| t.NickName.Equals(email) )&& t.Passwords.Equals(passwordEcrypt)).FirstOrDefault();
+            var objData = _userResponsitory.GetMany(t => t.Email.Equals(email)&& t.Passwords.Equals(passwordEcrypt)).FirstOrDefault();
             return objData != null;
+        }
+
+        public Model.User GetById(int id)
+        {
+            var objData = _userResponsitory.GetMany(t => t.UserId == id).FirstOrDefault();
+            return objData;
         }
         public  Model.User GetByNickName(string nickname)
         {
@@ -106,7 +112,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
             }
             catch (Exception ex)
             {
-                _logException.InsertException(new Model.LogException{Exception= ex.Message,Time = DateTime.Now});
+                var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
                 iNotifi = EnumKey.InsertSuccess;
             }
             return iNotifi;
@@ -124,7 +131,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
             }
             catch (Exception ex)
             {
-                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now });
+                var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
                 iNotifi = EnumKey.UpdateSuccess;
             }
             return iNotifi;

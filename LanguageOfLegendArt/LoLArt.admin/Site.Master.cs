@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.ConvertObject;
+using LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User;
 
 namespace LoLArt.admin
 {
@@ -14,7 +13,7 @@ namespace LoLArt.admin
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
-
+        public bool IsLogged;
         protected void Page_Init(object sender, EventArgs e)
         {
             // The code below helps to protect against XSRF attacks
@@ -68,12 +67,39 @@ namespace LoLArt.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["USER_LOGIN"] == null || ConvertObject.Object2Integer(Session["USER_LOGIN"].ToString()) == 0)
+            {
+                Response.Redirect("login.aspx", false);
+            }
+            if (!IsPostBack)
+            {
+                CheckLoged();
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut();
+        }
+
+        private void CheckLoged()
+        {
+            if (Session["USER_LOGIN"] != null)
+            {
+                UserController us = new UserController();
+               
+                var userId = ConvertObject.Object2Integer(Session["USER_LOGIN"]);
+                if (userId > 0)
+                {
+                    var objUser = us.GetById(userId);
+                    if (objUser != null)
+                    {
+                        IsLogged = true;
+                    }
+                }
+                else
+                    Response.Redirect("login.aspx", false);  
+            }
         }
     }
 

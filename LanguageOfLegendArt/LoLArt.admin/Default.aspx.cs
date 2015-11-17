@@ -1,15 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections.Specialized;
+using System.Web.Configuration;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-
+using LanguageOfLegendArt.Core.LanguageOfLegentArt.Security;
 namespace LoLArt.admin
 {
-    public partial class _Default : Page
+    public partial class Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
+        {
+            GetRequestParam();
+            if (!IsPostBack)
+            {
+
+            }
+        }
+
+        private void GetRequestParam()
         {
 
         }

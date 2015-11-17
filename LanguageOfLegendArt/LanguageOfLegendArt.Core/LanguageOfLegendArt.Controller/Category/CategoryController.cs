@@ -70,7 +70,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.Category
             }
             catch (Exception ex)
             {
-                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now });
+                var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
                 iNotifi = EnumKey.InsertFail;
             }
             return iNotifi;
@@ -90,7 +91,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.Category
             }
             catch (Exception ex)
             {
-                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now });
+                var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
             }
         }
     }
