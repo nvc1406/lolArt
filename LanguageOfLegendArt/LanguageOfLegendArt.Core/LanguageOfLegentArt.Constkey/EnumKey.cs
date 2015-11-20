@@ -25,5 +25,13 @@
         public const int EmailFailure = 403;//Sai email
         public const int AccountBlocked = 405; // Lỗi trả về khi tk bị khóa hoặc banned.
         #endregion
+        #region Các enum nhóm quyền user
+
+        public static int Administrator = 1;
+        public static int Moderator = 2;
+        public static int Customer = 3;
+        public static int UserTemp = 4;
+
+        #endregion
     }
 }

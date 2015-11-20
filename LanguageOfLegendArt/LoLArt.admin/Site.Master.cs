@@ -67,6 +67,7 @@ namespace LoLArt.admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = @"LOL ART Management";
             if (Session["USER_LOGIN"] == null || ConvertObject.Object2Integer(Session["USER_LOGIN"].ToString()) == 0)
             {
                 Response.Redirect("login.aspx", false);
@@ -95,10 +96,27 @@ namespace LoLArt.admin
                     if (objUser != null)
                     {
                         IsLogged = true;
+                        InitProfile(objUser.Avatar, objUser.NickName);
+
                     }
                 }
                 else
                     Response.Redirect("login.aspx", false);  
+            }
+        }
+
+        private void InitProfile(string imgUrl,string name)
+        {
+            if (!string.IsNullOrEmpty(imgUrl) && !string.IsNullOrEmpty(name))
+            {
+                lbProfile.Text = string.Format(
+                               "<img src='{0}' width=\"52\" alt=\"{2}\"/><span>{1}</span>", imgUrl, name, name);
+
+                lbAvatarLeft.Text = string.Format("<img src=\"{0}\" class=\"img-circle img-responsive\" alt=\"\">", imgUrl);
+                lbNameLeft.Text = string.Format("<span>{0}<br><small>{1}</small></span>", name, "LOL ART Management");
+                lblName.Text = string.Format("<span class=\"user-name\">{0}<i class=\"fa fa-angle-down\"></i></span>",name);
+                lblAvatar.Text =
+                    string.Format("<img class=\"img-circle avatar\" src=\"{0}\" width=\"40\" height=\"40\" alt=\"\">",imgUrl);
             }
         }
     }

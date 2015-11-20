@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>LOL Art | Login - Sign in</title>
+    <title>Login - Sign in</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta charset="UTF-8"/>
         <meta name="description" content="Lol Art" />
@@ -23,7 +23,9 @@
         <!-- Theme Styles -->
         <link href="Content/assets/css/modern.min.css" rel="stylesheet" type="text/css"/>
         <link href="Content/assets/css/themes/white.css" class="theme-color" rel="stylesheet" type="text/css"/>
-        <link href="Content/assets/css/custom.css" rel="stylesheet" type="text/css"/>        
+        <link href="Content/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16"/>  
+        
 </head>
 <body>
    <main class="page-content">

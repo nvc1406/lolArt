@@ -41,9 +41,18 @@ namespace LoLArt.admin
                         }
                         else // Phần này cần check thêm quyền.
                         {
+                            string perUrl = string.Empty;
                             context.Session["USER_LOGIN"] = objUser.UserId;
-                            urlBuilder = string.Format("status={0}&mail={1}", EnumKey.AccountBlocked, txtEmail);
-                            var url = extractQuery.EncyptionUrl("Contact.aspx", urlBuilder);
+                            if (objUser.Role == EnumKey.Administrator) // nếu là admin
+                            {
+                                perUrl = "Home.aspx";
+                            }
+                            else if (objUser.Role == EnumKey.Moderator) // là Mod - ng quản lý
+                            {
+                                perUrl = "Home.aspx";
+                            }
+                            //urlBuilder = string.Format("status={0}&mail={1}", EnumKey.AccountBlocked, txtEmail);
+                            var url = extractQuery.EncyptionUrl(perUrl, string.Empty);
                             context.Response.Redirect(url, false);
                         }
                     }

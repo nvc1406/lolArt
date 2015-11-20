@@ -5,7 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> Site Master</title>
+    <title><%: Page.Title %></title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta charset="UTF-8">
     <meta name="description" content="Admin Dashboard Template" />
@@ -108,7 +108,11 @@
         <%-- Box khi click vào icon Avatar  --%>
         <div class="menu-wrap">
             <nav class="profile-menu">
-                <div class="profile"><img src="Content/assets/images/avatar1.png" width="52" alt="David Green"/><span>David Green</span></div>
+                <div class="profile">
+                    <asp:Literal runat="server" ID="lbProfile" ClientIDMode="Static"></asp:Literal>
+                    <%--<img src="Content/assets/images/avatar1.png" width="52" alt="David Green"/><span>David Green</span>--%>
+                </div>
+                
                 <div class="profile-menu-list">
                     <a href="#"><i class="fa fa-star"></i><span>Favorites</span></a>
                     <a href="#"><i class="fa fa-bell"></i><span>Alerts</span></a>
@@ -331,8 +335,10 @@
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                                        <span class="user-name">David<i class="fa fa-angle-down"></i></span>
-                                        <img class="img-circle avatar" src="Content/assets/images/avatar1.png" width="40" height="40" alt="">
+                                        <asp:Literal runat="server" ID="lblName"></asp:Literal>
+                                        <asp:Literal runat="server" ID="lblAvatar"></asp:Literal>
+                                        <%--<span class="user-name">David<i class="fa fa-angle-down"></i></span>--%>
+                                        <%--<img class="img-circle avatar" src="Content/assets/images/avatar1.png" width="40" height="40" alt="">--%>
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
                                         <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
@@ -375,10 +381,12 @@
                         <div class="sidebar-profile">
                             <a href="javascript:void(0);" id="profile-menu-link">
                                 <div class="sidebar-profile-image">
-                                    <img src="Content/assets/images/avatar1.png" class="img-circle img-responsive" alt="">
+                                    <asp:Literal runat="server" ID="lbAvatarLeft"></asp:Literal>
+                                    <%--<img src="Content/assets/images/avatar1.png" class="img-circle img-responsive" alt="">--%>
                                 </div>
                                 <div class="sidebar-profile-details">
-                                    <span>David Green<br><small>Art Director</small></span>
+                                    <asp:Literal runat="server" ID="lbNameLeft"></asp:Literal>
+                                    <%--<span>David Green<br><small>Art Director</small></span>--%>
                                 </div>
                             </a>
                         </div>
