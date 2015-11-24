@@ -1,29 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LoLArt.admin.Home" MasterPageFile="~/Site.Master"%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="plcContent" runat="server">   
     <link href="Content/assets/css/clock.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <link href="Content/assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
-    <link href="Content/assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet"/>
-    <link href="Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>	
-    <link href="Content/assets/plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
-    <link href="Content/assets/css/modern.min.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/css/themes/white.css" class="theme-color" rel="stylesheet" type="text/css"/>
     <link href="Content/assets/css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="Content/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>	
-    <script src="Content/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
-    <script src="Content/assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
-
+    
+    
     <div id="main-wrapper">
                     <%-- Thời gian hệ thống : block --%>
                     <div class="row">
@@ -102,7 +82,7 @@
                                         <div class="visitors-chart">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">Danh sách lỗi</h4>
-                                            </div>
+                                             </div>
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                 <table class="table">
@@ -229,61 +209,14 @@
                         <div class="col-lg-9 col-md-12">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">Inbox</h4>
+                                    <h4 class="panel-title">FeedBack về hệ thống</h4>
                                     <div class="panel-control">
                                         <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
                                     </div>
                                 </div>
                                 <div class="panel-body">
                                     <div class="inbox-widget slimscroll">
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar2.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Sandra Smith</p>
-                                                <p class="inbox-item-text">Hey! I'm working on your...</p>
-                                                <p class="inbox-item-date">13:40 PM</p>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar3.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Christopher</p>
-                                                <p class="inbox-item-text">I've finished it! See you so...</p>
-                                                <p class="inbox-item-date">13:34 PM</p>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar4.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Amily Lee</p>
-                                                <p class="inbox-item-text">This theme is awesome!</p>
-                                                <p class="inbox-item-date">13:17 PM</p>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar5.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Nick Doe</p>
-                                                <p class="inbox-item-text">Nice to meet you</p>
-                                                <p class="inbox-item-date">12:20 PM</p>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar2.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Sandra Smith</p>
-                                                <p class="inbox-item-text">Hey! I'm working on your...</p>
-                                                <p class="inbox-item-date">10:15 AM</p>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="inbox-item">
-                                                <div class="inbox-item-img"><img src="Content/assets/images/avatar4.png" class="img-circle" alt=""></div>
-                                                <p class="inbox-item-author">Amily Lee</p>
-                                                <p class="inbox-item-text">This theme is awesome!</p>
-                                                <p class="inbox-item-date">9:56 AM</p>
-                                            </div>
-                                        </a>
+                                       <asp:Literal runat="server" ID="lbFeedBack"></asp:Literal>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +246,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">Project Stats</h4>
+                                    <h4 class="panel-title">Danh sách bài đăng chưa duyệt</h4>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive project-stats">  
@@ -321,88 +254,19 @@
                                            <thead>
                                                <tr>
                                                    <th>#</th>
-                                                   <th>Project</th>
+                                                   <th>Title</th>
                                                    <th>Status</th>
-                                                   <th>Manager</th>
-                                                   <th>Progress</th>
+                                                   <th>Category</th>
+                                                   <th>Posted By</th>
+                                                   <th>Time</th>
                                                </tr>
                                            </thead>
                                            <tbody>
-                                               <tr>
-                                                   <th scope="row">452</th>
-                                                   <td>Mailbox Template</td>
-                                                   <td><span class="label label-info">Pending</span></td>
-                                                   <td>David Green</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                                   <th scope="row">327</th>
-                                                   <td>Wordpress Theme</td>
-                                                   <td><span class="label label-primary">In Progress</span></td>
-                                                   <td>Sandra Smith</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                                   <th scope="row">226</th>
-                                                   <td>Modern Admin Template</td>
-                                                   <td><span class="label label-success">Finished</span></td>
-                                                   <td>Chritopher Palmer</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                                   <th scope="row">178</th>
-                                                   <td>eCommerce template</td>
-                                                   <td><span class="label label-danger">Canceled</span></td>
-                                                   <td>Amily Lee</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                                   <th scope="row">157</th>
-                                                   <td>Website PSD</td>
-                                                   <td><span class="label label-info">Testing</span></td>
-                                                   <td>Nick Doe</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
-                                               <tr>
-                                                   <th scope="row">157</th>
-                                                   <td>Fronted Theme</td>
-                                                   <td><span class="label label-warning">Waiting</span></td>
-                                                   <td>David Green</td>
-                                                   <td>
-                                                       <div class="progress progress-sm">
-                                                           <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                                           </div>
-                                                       </div>
-                                                   </td>
-                                               </tr>
+                                                <asp:Literal runat="server" ID="lbPostWaiting"></asp:Literal>
                                            </tbody>
                                         </table>
                                     </div>
+                                    <asp:Literal runat="server" ID="lbNotePostWating"></asp:Literal>
                                 </div>
                             </div>
                         </div>
@@ -410,22 +274,4 @@
                 </div>
         <script src="Content/assets/plugins/jquery/jquery-2.1.3.min.js"></script>
         <script src="Content/assets/js/customClock.js" type="text/javascript" ></script>
-        <script src="Content/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-        <script src="Content/assets/plugins/pace-master/pace.min.js"></script>
-        <script src="Content/assets/plugins/jquery-blockui/jquery.blockui.js"></script>
-        <script src="Content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="Content/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="Content/assets/plugins/switchery/switchery.min.js"></script>
-        <script src="Content/assets/plugins/uniform/jquery.uniform.min.js"></script>
-        <script src="Content/assets/plugins/offcanvasmenueffects/js/classie.js"></script>
-        <script src="Content/assets/plugins/offcanvasmenueffects/js/main.js"></script>
-        <script src="Content/assets/plugins/waves/waves.min.js"></script>
-        <script src="Content/assets/plugins/3d-bold-navigation/js/main.js"></script>
-        <script src="Content/assets/plugins/jquery-mockjax-master/jquery.mockjax.js"></script>
-        <script src="Content/assets/plugins/moment/moment.js"></script>
-        <script src="Content/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
-        <script src="Content/assets/plugins/x-editable/bootstrap3-editable/js/bootstrap-editable.js"></script>
-        <script src="Content/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="Content/assets/js/modern.min.js"></script>
-        
 </asp:Content>

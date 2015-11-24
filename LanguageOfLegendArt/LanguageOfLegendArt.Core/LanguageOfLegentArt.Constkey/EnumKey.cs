@@ -18,6 +18,7 @@
         public const int Waiting = 1001;//trạng thái đang chờ/đợi
         public const int Block = 1002;//trạng thái bị khóa
         public const int Deleteted = 1003;//trạng thái bị khóa
+        public const int Accepted = 1004;//trạng thái đã duyệt
         #endregion
         #region Các enum nhóm dành cho check các thông báo lỗi...
         public const int LoginFail = 404;//Đăng nhập thất bại

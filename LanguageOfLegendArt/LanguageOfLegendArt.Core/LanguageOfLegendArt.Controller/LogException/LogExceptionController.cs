@@ -8,13 +8,12 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.LogException
 {
     public class LogExceptionController
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly LogExceptionResponsitory _exceptionResponsitory;
 
         public LogExceptionController()
         {
-            _unitOfWork = new UnitOfWork.UnitOfWork();
-            _exceptionResponsitory = new LogExceptionResponsitory(_unitOfWork);
+            IUnitOfWork unitOfWork = new UnitOfWork.UnitOfWork();
+            _exceptionResponsitory = new LogExceptionResponsitory(unitOfWork);
         }
 
         public void InsertException(Model.LogException exception)
