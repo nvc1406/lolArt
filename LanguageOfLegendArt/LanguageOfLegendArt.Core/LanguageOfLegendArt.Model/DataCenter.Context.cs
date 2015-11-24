@@ -40,6 +40,7 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Model
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<BannedUser> BannedUsers { get; set; }
         public virtual DbSet<PageDefault> PageDefaults { get; set; }
+        public virtual DbSet<FeedBack> FeedBacks { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

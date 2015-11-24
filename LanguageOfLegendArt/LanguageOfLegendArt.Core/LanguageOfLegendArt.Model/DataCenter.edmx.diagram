@@ -26,6 +26,7 @@
         <AssociationConnector Association="DataCenterModel.PostTagMap" />
         <EntityTypeShape EntityType="DataCenterModel.PageDefault" Width="1.5" PointX="3" PointY="16.5" />
         <AssociationConnector Association="DataCenterModel.FK_PageDefault_User" />
+        <EntityTypeShape EntityType="DataCenterModel.FeedBack" Width="1.5" PointX="3.5" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

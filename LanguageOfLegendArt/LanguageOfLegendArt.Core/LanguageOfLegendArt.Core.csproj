@@ -106,6 +106,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataCenter.edmx</DependentUpon>
     </Compile>
+    <Compile Include="LanguageOfLegendArt.Model\FeedBack.cs">
+      <DependentUpon>DataCenter.tt</DependentUpon>
+    </Compile>
     <Compile Include="LanguageOfLegendArt.Model\LogException.cs">
       <DependentUpon>DataCenter.tt</DependentUpon>
     </Compile>

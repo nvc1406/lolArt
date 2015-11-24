@@ -161,6 +161,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\assets\css\clock.css" />
     <Content Include="Content\assets\css\custom.css" />
     <Content Include="Content\assets\css\modern.css" />
     <Content Include="Content\assets\css\modern.min.css" />
@@ -170,7 +171,6 @@
     <Content Include="Content\assets\css\themes\purple.css" />
     <Content Include="Content\assets\css\themes\red.css" />
     <Content Include="Content\assets\css\themes\white.css" />
-    <Content Include="Content\assets\images\attachment1.jpg" />
     <Content Include="Content\assets\images\attachment1.png" />
     <Content Include="Content\assets\images\attachment2.jpg" />
     <Content Include="Content\assets\images\attachment2.png" />
@@ -225,6 +225,7 @@
     <Content Include="Content\assets\images\signature.png" />
     <Content Include="Content\assets\images\upload.png" />
     <Content Include="Content\assets\js\custom.js" />
+    <Content Include="Content\assets\js\customClock.js" />
     <Content Include="Content\assets\js\modern.js" />
     <Content Include="Content\assets\js\modern.min.js" />
     <Content Include="Content\assets\js\pages\calendar.js" />

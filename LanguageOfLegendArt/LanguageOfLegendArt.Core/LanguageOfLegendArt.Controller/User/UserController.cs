@@ -112,8 +112,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
             }
             catch (Exception ex)
             {
-                var mes = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
+                //var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(), MethodName = "CreateUser", StatusException = EnumKey.Running });
                 iNotifi = EnumKey.InsertSuccess;
             }
             return iNotifi;
@@ -132,7 +132,7 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.User
             catch (Exception ex)
             {
                 var mes = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(), MethodName = "UpdatePropertise", StatusException = EnumKey.Running });
                 iNotifi = EnumKey.UpdateSuccess;
             }
             return iNotifi;

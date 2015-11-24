@@ -12,13 +12,13 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class LogException
+    public partial class FeedBack
     {
         public int Id { get; set; }
+        public string Email { get; set; }
+        public string FContent { get; set; }
         public System.DateTime Time { get; set; }
-        public string Exception { get; set; }
-        public int StatusException { get; set; }
-        public string FileException { get; set; }
-        public string MethodName { get; set; }
+        public int Status { get; set; }
+        public Nullable<int> SupportedBy { get; set; }
     }
 }

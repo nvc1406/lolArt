@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.LogException;
+using LanguageOfLegendArt.Core.LanguageOfLegentArt.Constkey;
 using LanguageOfLegendArt.Core.UnitOfWork;
 
 namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.PageDefault
@@ -39,8 +40,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.PageDefault
             }
             catch (Exception ex)
             {
-                var exMess = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException{Exception = exMess,Time = DateTime.Now});
+                //var exMess = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(), MethodName = "AddPage", StatusException = EnumKey.Running });
                 return ex.Message;
             }
         }
@@ -57,8 +58,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.PageDefault
             }
             catch (Exception ex)
             {
-                var exMess = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException { Exception = exMess, Time = DateTime.Now });
+                //var exMess = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(), MethodName = "UpdatePage", StatusException = EnumKey.Running });
                 return ex.Message;
             }
         }

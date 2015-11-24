@@ -25,7 +25,10 @@ namespace LoLArt.admin
         }
         protected void Application_EndRequest()
         {
-            MiniProfiler.Stop();
+            if (Request.IsLocal)
+            {
+                MiniProfiler.Stop();
+            }
         }
     }
 }

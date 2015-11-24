@@ -70,8 +70,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.Category
             }
             catch (Exception ex)
             {
-                var mes = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
+                //var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(), MethodName = "Create", StatusException = EnumKey.Running });
                 iNotifi = EnumKey.InsertFail;
             }
             return iNotifi;
@@ -91,8 +91,8 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.Category
             }
             catch (Exception ex)
             {
-                var mes = GetType() + ex.Message;
-                _logException.InsertException(new Model.LogException { Exception = mes, Time = DateTime.Now });
+                //var mes = GetType() + ex.Message;
+                _logException.InsertException(new Model.LogException { Exception = ex.Message, Time = DateTime.Now, FileException = GetType().ToString(),MethodName = "Update",StatusException = EnumKey.Running});
             }
         }
     }

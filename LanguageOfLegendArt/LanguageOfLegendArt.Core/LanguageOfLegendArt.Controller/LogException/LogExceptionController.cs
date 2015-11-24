@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LanguageOfLegendArt.Core.LanguageOfLegentArt.Constkey;
 using LanguageOfLegendArt.Core.UnitOfWork;
 
 namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.LogException
@@ -31,6 +32,11 @@ namespace LanguageOfLegendArt.Core.LanguageOfLegendArt.Controller.LogException
         public List<Model.LogException> GetAllException()
         {
             var lstData = _exceptionResponsitory.GetAll();
+            return lstData.ToList();
+        }
+        public List<Model.LogException> GetAllExceptionNotFixed()
+        {
+            var lstData = _exceptionResponsitory.GetMany(p => p.StatusException == EnumKey.Running).OrderByDescending(t => t.Time);
             return lstData.ToList();
         }
 

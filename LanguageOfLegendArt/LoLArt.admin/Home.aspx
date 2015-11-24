@@ -1,11 +1,37 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="LoLArt.admin.Home" MasterPageFile="~/Site.Master"%>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="plcContent" runat="server">
-    
+<asp:Content ID="BodyContent" ContentPlaceHolderID="plcContent" runat="server">   
+    <link href="Content/assets/css/clock.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="Content/assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
+    <link href="Content/assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet"/>
+    <link href="Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>	
+    <link href="Content/assets/plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
+    <link href="Content/assets/css/modern.min.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/css/themes/white.css" class="theme-color" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="Content/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>	
+    <script src="Content/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
+    <script src="Content/assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
+
     <div id="main-wrapper">
+                    <%-- Thời gian hệ thống : block --%>
                     <div class="row">
-                        <div class="col-lg-5 col-md-10">
+                        <div class="col-lg-5 col-md-11">
                             <div class="panel info-box panel-white">
                                 <div class="panel-body">
+                                    <h3 style="margin-top: 0">Thời gian hệ thống:</h3>
+                                    <div id="clock"></div>
                                 </div>
                             </div>
                         </div>
@@ -72,17 +98,35 @@
                         <div class="col-lg-9 col-md-12">
                             <div class="panel panel-white">
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="visitors-chart">
                                             <div class="panel-heading">
-                                                <h4 class="panel-title">Visitors</h4>
+                                                <h4 class="panel-title">Danh sách lỗi</h4>
                                             </div>
                                             <div class="panel-body">
-                                                <div id="flotchart1"></div>
+                                                <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>ID</th>
+                                                            <th>File Exception</th>
+                                                            <th>Method Name</th>
+                                                            <th>Exception</th>
+                                                            <th>Time</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <asp:Literal runat="server" ID="lbTableLog"></asp:Literal>
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                                <asp:Literal runat="server" ID="lbNote"></asp:Literal>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <%--<div class="col-sm-4">
                                         <div class="stats-info">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">Browser Stats</h4>
@@ -99,11 +143,11 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--%>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
+                        <%--<div class="col-lg-3 col-md-6">
                             <div class="panel panel-white" style="height: 100%;">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Server Load</h4>
@@ -130,8 +174,8 @@
                                     <div id="flotchart2"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-5 col-md-6">
+                        </div>--%> <%--// block thông tin hệ thống--%>
+                        <%--<div class="col-lg-5 col-md-6">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Weather</h4>
@@ -181,8 +225,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
+                        </div>--%> <%--// blok thời tiết--%>
+                        <div class="col-lg-9 col-md-12">
                             <div class="panel panel-white">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Inbox</h4>
@@ -364,4 +408,24 @@
                         </div>
                     </div>
                 </div>
+        <script src="Content/assets/plugins/jquery/jquery-2.1.3.min.js"></script>
+        <script src="Content/assets/js/customClock.js" type="text/javascript" ></script>
+        <script src="Content/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="Content/assets/plugins/pace-master/pace.min.js"></script>
+        <script src="Content/assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+        <script src="Content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="Content/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="Content/assets/plugins/switchery/switchery.min.js"></script>
+        <script src="Content/assets/plugins/uniform/jquery.uniform.min.js"></script>
+        <script src="Content/assets/plugins/offcanvasmenueffects/js/classie.js"></script>
+        <script src="Content/assets/plugins/offcanvasmenueffects/js/main.js"></script>
+        <script src="Content/assets/plugins/waves/waves.min.js"></script>
+        <script src="Content/assets/plugins/3d-bold-navigation/js/main.js"></script>
+        <script src="Content/assets/plugins/jquery-mockjax-master/jquery.mockjax.js"></script>
+        <script src="Content/assets/plugins/moment/moment.js"></script>
+        <script src="Content/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+        <script src="Content/assets/plugins/x-editable/bootstrap3-editable/js/bootstrap-editable.js"></script>
+        <script src="Content/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="Content/assets/js/modern.min.js"></script>
+        
 </asp:Content>

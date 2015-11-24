@@ -73,6 +73,17 @@ warning 6002: The table/view 'DataCenter.dbo.CategoryRoleMap' does not have a pr
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="MoreContact" Type="ntext" />
         </EntityType>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FContent" Type="ntext" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="SupportedBy" Type="int" />
+        </EntityType>
         <EntityType Name="LogException">
           <Key>
             <PropertyRef Name="Id" />
@@ -80,6 +91,9 @@ warning 6002: The table/view 'DataCenter.dbo.CategoryRoleMap' does not have a pr
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Time" Type="datetime" Nullable="false" />
           <Property Name="Exception" Type="ntext" Nullable="false" />
+          <Property Name="StatusException" Type="int" Nullable="false" />
+          <Property Name="FileException" Type="nvarchar" MaxLength="500" />
+          <Property Name="MethodName" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PageDefault">
           <Key>
@@ -331,6 +345,7 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Champion" EntityType="Self.Champion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogException" EntityType="Self.LogException" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageDefault" EntityType="Self.PageDefault" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
@@ -511,6 +526,7 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
             <End Role="User" EntitySet="Users" />
             <End Role="PageDefault" EntitySet="PageDefaults" />
           </AssociationSet>
+          <EntitySet Name="FeedBacks" EntityType="DataCenterModel.FeedBack" />
         </EntityContainer>
         <EntityType Name="Calender">
           <Key>
@@ -563,6 +579,9 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Exception" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusException" Type="Int32" Nullable="false" />
+          <Property Name="FileException" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MethodName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -767,6 +786,17 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="SupportedBy" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -822,6 +852,9 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
           <EntitySetMapping Name="LogExceptions">
             <EntityTypeMapping TypeName="DataCenterModel.LogException">
               <MappingFragment StoreEntitySet="LogException">
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="FileException" ColumnName="FileException" />
+                <ScalarProperty Name="StatusException" ColumnName="StatusException" />
                 <ScalarProperty Name="Exception" ColumnName="Exception" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -966,6 +999,18 @@ warning 6002: The table/view 'DataCenter.dbo.PostTagMap' does not have a primary
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedBacks">
+            <EntityTypeMapping TypeName="DataCenterModel.FeedBack">
+              <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="SupportedBy" ColumnName="SupportedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="FContent" ColumnName="FContent" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
